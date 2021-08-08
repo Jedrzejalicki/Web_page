@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<teams>
+	<team>
+		<image source="Williams.jpg">Williams</image>
+	</team>
+	<team>
+		<image source="AlfaRomeo.jpg">Alfa Romeo</image>
+	</team>
+	<team>
+		<image source="RacingPoint.jpg">Racing Point</image>
+	</team>
+	<team>
+		<image source="Mercedes.jpg">Mercedes</image>
+	</team>
+	<team>
+		<image source="Ferrari.jpg">Ferrari</image>
+	</team>
+	<team>
+		<image source="RedBull.jpg">Red Bull</image>
+	</team>
+	<team>
+		<image source="Rentaul.jpg">Rentaul</image>
+	</team>
+	<team>
+		<image source="McLaren.jpg">McLaren</image>
+	</team>
+	<team>
+		<image source="AlphaTauri.jpg">Alpha Tauri</image>
+	</team>
+</teams>

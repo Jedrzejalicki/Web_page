@@ -1,0 +1,127 @@
+<!DOCTYPE formula1 [
+
+	<!ELEMENT formula1 (drivers, (facts+), links, teams)>
+	
+	<!ENTITY rcp "RacingPoint">
+	<!ELEMENT drivers (driver+)>
+	<!ELEMENT driver (#PCDATA)>
+	<!ATTLIST driver id_number CDATA #REQUIRED>
+	<!ATTLIST driver podiums CDATA #REQUIRED>
+	<!ATTLIST driver team (Williams|Mercedes|Haas|AlfaRomeo|AlphaTauri|RedBull|Rentaul|RacingPoint|Mclaren|Ferrari) #REQUIRED>
+	
+	<!ENTITY imp "important">
+	<!ELEMENT facts (component+)>
+	<!ATTLIST facts kind (informations|rules|car) #IMPLIED>
+	<!ATTLIST facts current (yes|no) "yes">
+	<!ELEMENT component (text|rule+|text1)>
+	<!ELEMENT text (history)>
+	<!ELEMENT history (firstRace,text1)>
+	<!ELEMENT firstRace (#PCDATA)>
+	<!ELEMENT text1 (#PCDATA)>
+	<!ELEMENT rule (#PCDATA)>
+	<!ATTLIST rule value CDATA #IMPLIED>
+
+
+	<!ELEMENT links (link+)>
+	<!ELEMENT link (#PCDATA)>
+	<!ATTLIST link source CDATA #REQUIRED>
+	<!ATTLIST link description CDATA #FIXED "interesting">
+
+	<!ELEMENT teams (team+)>
+	<!ELEMENT team (image)>
+	<!ELEMENT image (#PCDATA)>
+	<!ATTLIST image source CDATA #REQUIRED>
+
+	<!ENTITY external SYSTEM 'teams.xml'>
+
+
+
+]>
+<formula1>
+
+	<drivers>
+		<driver id_number="63" podiums="000" team="Williams">Gorge Russel</driver>
+		<driver id_number="88" podiums="000" team="Williams">Nicholas Latifi</driver>
+		<driver id_number="20" podiums="001" team="Haas">Kevin Magnusen</driver>
+		<driver id_number="08" podiums="010" team="Haas">Romain Grosjean</driver>
+		<driver id_number="07" podiums="103" team="AlfaRomeo">Kimi Raikonen</driver>
+		<driver id_number="99" podiums="000" team="AlfaRomeo">Antonio Govinazzi</driver>
+		<driver id_number="11" podiums="009" team="&rcp;">Sergio Perez</driver>
+		<driver id_number="18" podiums="002" team="&rcp;">Lance Stroll</driver>
+		<driver id_number="10" podiums="002" team="AlphaTauri">Piere Gasly</driver>
+		<driver id_number="26" podiums="003" team="AlphaTauri">Danil Kvyat</driver>
+		<driver id_number="05" podiums="121" team="Ferrari">Sebastian Vettel</driver>
+		<driver id_number="16" podiums="012" team="Ferrari">Charles Leclerc</driver>
+		<driver id_number="27" podiums="000" team="Rentaul">Esteban Ocon</driver>
+		<driver id_number="03" podiums="031" team="Rentaul">Daniel Ricardo</driver>
+		<driver id_number="23" podiums="001" team="RedBull">Alex Albon</driver>
+		<driver id_number="33" podiums="040" team="RedBull">Max Verstappen</driver>
+		<driver id_number="04" podiums="001" team="Mclaren">LandoNorris</driver>
+		<driver id_number="55" podiums="002" team="Mclaren">Carlos Sainz</driver>
+		<driver id_number="77" podiums="055" team="Mercedes">Valtteri Bottas</driver>
+		<driver id_number="44" podiums="163" team="Mercedes">Lewis Hamilton</driver>
+	</drivers>
+	
+	<facts kind="informations" current="no">
+		<component>
+			<text>
+				<history>
+					<firstRace>First race took place in Turin in Italy in 1946</firstRace>
+					<text1>
+						The Formula One series originated with the European Championship of Grand Prix motor racing (q.v. for pre-1947 history) of the 1920s and 1930s.
+						The formula comprises a set of rules that all participants' cars must meet. Formula One was a new formula agreed upon during 1946 after World War II,
+						with the first non-championship races taking place that year. The first Formula 1 race was the1946 Turin Grand Prix.
+						A number of Grand Prix racing organisations had laid out rules
+						for a world championship before the war, but due to the suspension of racing during the conflict, the World Drivers' Championship did not become formalised until 1947.
+						The first world championship race took place at Silverstone in the United Kingdom in 1950. A championship for constructors followed in 1958.
+						National championships existed in South Africa and the UK in the 1960s and 1970s. Non-championship Formula One events were held[by whom?] for many years,
+						but due to the increasing cost of competition, the last of these occurred in 1983.[ On 26 November 2017 Formula One unveiled its new logo,
+						following the 2017 season finale in Abu Dhabi during the Abu Dhabi Grand Prix at Yas Marina Circuit. The new logo replaced F1's iconic "flying one",
+						which had been the sport's trademark since 1993.
+					</text1>
+				</history>
+			</text>
+		</component>
+	</facts>
+
+	<facts kind="rules" current="yes">
+		<component>
+			<rule value="&imp;">The “One Move” Defending Rule</rule>
+			<rule>Drivers Must Qualify Within 107% Of The Pole-Sitter</rule>
+			<rule>If an engine part is changed, they take a grid drop penalty</rule>
+			<rule value="&imp;">Speeding In The Pitlane? You Get A Penalty</rule>
+			<rule>They Must Change Tyre Compounds In The Race</rule>
+			<rule value="&imp;">Safety Car Line Overtaking</rule>
+			<rule>Rain Lights MUST Be Used In The Wet</rule>
+		</component>
+	</facts>
+
+	<facts kind="car" current="yes">
+		<component>
+			<text1>
+				A Formula One car is a single-seat, open cockpit, open-wheel racing car with substantial front and rear wings,
+				and an engine positioned behind the driver, intended to be used in competition at Formula One racing events.
+				The regulations governing the cars are unique to the championship and specify that cars must be constructed by the racing teams themselves,
+				though the design and manufacture can be outsourced.
+				Modern-day Formula One cars are constructed from composites of carbon fibre and similar ultra-lightweight materials.
+				The minimum weight permissible is 740 kg (1,631 lb) including the driver but not fuel. Cars are weighed with dry-weather tyres fitted.
+				Prior to the 2014 F1 season, cars often weighed in under this limit so teams added ballast in order to add weight to the car.
+				The advantage of using ballast is that it can be placed anywhere in the car to provide ideal weight distribution.
+				This can help lower the car's centre of gravity to improve stability and also allows the team to fine-tune the weight distribution
+				of the car to suit individual circuits.
+			</text1>
+		</component>
+	</facts>
+
+	<links>
+		<link source="https://www.formula1.com/en/results.html/2020/drivers.html" description="interesting">Driver Standings</link>
+		<link source="https://en.wikipedia.org/wiki/Formula_One_regulations" description="interesting">Regulations</link>
+		<link source="https://www.formula1.com/en.html" description="interesting">Official webpage</link>
+		<link source="https://www.tutorialspoint.com/formula_one/formula_one_quick_guide.htm" description="interesting">quick guide</link>
+		<link source="https://en.wikipedia.org/wiki/2020_Formula_One_World_Championship" description="interesting">Informations</link>
+		<link source="https://www.hotcars.com/15-rules-every-formula-one-driver-has-to-follow/" description="interesting">15 rules</link>
+	</links>
+	
+	&external;
+
+</formula1>

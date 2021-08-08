@@ -1,0 +1,229 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified">
+	<xs:element name="formula1">
+		<xs:complexType>
+		<xs:sequence>
+			<xs:element name="author">
+				<xs:complexType>
+					<xs:all>
+						<xs:element  name="name" type="shortStringType" />
+						<xs:element  name="surname" type="shortStringType"/>
+						<xs:element name="group" type="xs:integer" />
+						<xs:element name="phone" type="phoneNumberType"/>
+					</xs:all>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="drivers" type="driversType"/>
+			<xs:element ref="facts" minOccurs="0" maxOccurs="3"/>
+			<xs:element name="links" type="linksType"/>
+			<xs:element name="forms">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:group ref="formGroup"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="teams" type="teamsType"/>
+			
+			
+		</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:simpleType name="shortStringType">
+		<xs:restriction base="xs:string">
+			<xs:maxLength value="100"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:simpleType name="longStringType">
+		<xs:restriction base="xs:string">
+			<xs:minLength value="100"/>
+			<xs:maxLength value="9000"/>
+		</xs:restriction>
+	</xs:simpleType>
+	
+	<xs:complexType name="driversType">
+		<xs:sequence>
+			<xs:element name="driver" maxOccurs="22" minOccurs="0">
+				<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="shortStringType">
+							<xs:attribute type="numberType" name="id_number" />
+							<xs:attribute type="numberType" name="podiums"/>
+							<xs:attribute ref="team"/>
+						</xs:extension>
+					</xs:simpleContent>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:simpleType name="numberType">
+		<xs:restriction base="xs:decimal">
+			<xs:minInclusive value="0"/>
+			<xs:maxInclusive value="200"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:element name="facts" type="factsType"/>
+	<xs:complexType name="factsType">
+		<xs:sequence>
+			<xs:element name="component" type="componentType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+		<xs:attribute name="kind" type="kindType" use="required"/>
+		<xs:attribute name="current" use="optional" default="no">
+			<xs:simpleType>
+				<xs:restriction base="xs:string">
+					<xs:pattern value="yes|no"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+
+	<xs:complexType name="componentType">
+		<xs:choice>
+			<xs:element name="text" type="textType"/>
+			<xs:element ref="text1"/>
+			<xs:element name="rule" type="shortStringType" minOccurs="0" maxOccurs="unbounded" />
+		</xs:choice>
+	</xs:complexType>
+
+
+	<xs:element name ="text1" type="longStringType"/>
+
+	<xs:simpleType name="kindType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="car"/>
+			<xs:enumeration value="rules"/>
+			<xs:enumeration value="informations"/>
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="textType" mixed="true">
+		<xs:choice>
+			<xs:element name="history">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="firstRace" type="xs:string"/>
+						<xs:element ref="text1"/>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:choice>
+	</xs:complexType>
+
+	<xs:simpleType name="union1Type">
+		<xs:union memberTypes="xs:decimal xs:string"/>
+	</xs:simpleType>
+
+	<xs:complexType name="linksType">
+		<xs:sequence>
+			<xs:element name="link" type="linkType" maxOccurs="unbounded" minOccurs="0"/>
+		</xs:sequence>
+		</xs:complexType>
+
+
+		<xs:complexType name="linkType">
+			<xs:simpleContent>
+				<xs:extension base="shortStringType">
+					<xs:attribute type="shortStringType" name="source"/>
+				</xs:extension>
+			</xs:simpleContent>
+		</xs:complexType>
+
+	
+	<xs:attribute name="team">
+		<xs:simpleType>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Williams"/>
+			<xs:enumeration value="Mercedes"/>
+			<xs:enumeration value="Ferrari"/>
+			<xs:enumeration value="RedBull"/>
+			<xs:enumeration value="Mclaren"/>
+			<xs:enumeration value="AlfaRomeo"/>
+			<xs:enumeration value="AlphaTauri"/>
+			<xs:enumeration value="Rentaul"/>
+			<xs:enumeration value="Haas"/>
+			<xs:enumeration value="RacingPoint"/>
+		</xs:restriction>
+	</xs:simpleType>
+	</xs:attribute>
+
+	<xs:simpleType name="unionType">
+		<xs:union memberTypes="shortStringType longStringType"></xs:union>
+	</xs:simpleType>
+	
+	<xs:group name="formGroup">
+		<xs:sequence>
+			<xs:element name="bigEntry" type="unionType"/>
+			<xs:element name="entry" type="shortStringType" maxOccurs="3" minOccurs="0"/>
+			<xs:element name="choice" type="choiceType"/>
+			<xs:element name="list"  type="optionList"/>
+			<xs:element name="favouriteTeam" type="favouriteTeamType"/>
+		</xs:sequence>
+	</xs:group>
+
+	<xs:simpleType name="phoneNumberType">
+		<xs:restriction base="xs:string">
+			<xs:pattern value="[0-9]{3}-[0-9]{3}-[0-9]{3}"/>
+			</xs:restriction>
+			</xs:simpleType>
+
+	<xs:complexType name="choiceType">
+		<xs:sequence>
+			<xs:element name="gender1" type="xs:string"/>
+			<xs:element name="gender2" type="xs:string"/>
+			<xs:element name="gender3" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+
+		<xs:complexType name="favouriteTeamType">
+			<xs:sequence>
+				<xs:element name="listOption" maxOccurs="unbounded" minOccurs="0">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="shortStringType">
+								<xs:attribute ref="team"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+
+	
+	<xs:complexType name="teamsType">
+		<xs:sequence>
+			<xs:element name="team" maxOccurs="10" minOccurs="0">
+				<xs:complexType>
+					<xs:sequence>
+					<xs:element name="image">
+						<xs:complexType>
+					<xs:simpleContent>
+						<xs:extension base="shortStringType">
+							<xs:attribute name="source" type="xs:anyURI"/>
+						</xs:extension>
+					</xs:simpleContent>
+						</xs:complexType>
+					</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:simpleType name="optionList">
+		<xs:restriction>
+			<xs:simpleType>
+				<xs:list>
+					<xs:simpleType>
+						<xs:restriction base="xs:string"/>
+					</xs:simpleType>
+				</xs:list>
+			</xs:simpleType>
+			<xs:length value="5" />
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>
